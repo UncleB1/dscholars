@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import SearchScreen from "@/components/SearchScreen";
 import SummaryScreen from "@/components/SummaryScreen";
@@ -6,9 +7,11 @@ import CitationModal from "@/components/CitationModal";
 import BrowserIntegration from "@/components/BrowserIntegration";
 
 const Index = () => {
+  const [isCitationModalOpen, setIsCitationModalOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-background">
-      <Navigation />
+      <Navigation onOpenCitations={() => setIsCitationModalOpen(true)} />
       
       {/* Screen 1: Search */}
       <SearchScreen />
@@ -20,7 +23,10 @@ const Index = () => {
       <LibraryScreen />
       
       {/* Screen 4: Citation Modal (overlaid) */}
-      <CitationModal />
+      <CitationModal 
+        isOpen={isCitationModalOpen} 
+        onClose={() => setIsCitationModalOpen(false)} 
+      />
       
       {/* Screen 5: Browser Integration */}
       <BrowserIntegration />

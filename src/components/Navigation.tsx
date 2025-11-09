@@ -1,6 +1,10 @@
 import { Home, Library, FileText, User } from "lucide-react";
 
-const Navigation = () => {
+interface NavigationProps {
+  onOpenCitations: () => void;
+}
+
+const Navigation = ({ onOpenCitations }: NavigationProps) => {
   return (
     <nav className="border-b border-border bg-card">
       <div className="max-w-7xl mx-auto px-6 py-4">
@@ -16,7 +20,10 @@ const Navigation = () => {
                 <Library className="w-4 h-4" />
                 Library
               </button>
-              <button className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+              <button 
+                onClick={onOpenCitations}
+                className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
                 <FileText className="w-4 h-4" />
                 Citations
               </button>

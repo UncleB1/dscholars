@@ -3,9 +3,16 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
-const CitationModal = () => {
+interface CitationModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const CitationModal = ({ isOpen, onClose }: CitationModalProps) => {
   const [selectedFormat, setSelectedFormat] = useState("APA");
   const [copied, setCopied] = useState(false);
+
+  if (!isOpen) return null;
 
   const citations = {
     APA: "Smith, J., Davis, R., & Thompson, K. (2023). Machine Learning Applications in Medical Diagnosis. Nature Medicine, 29(4), 567-580. https://doi.org/10.1038/example",
@@ -61,7 +68,7 @@ const CitationModal = () => {
           </div>
 
           <div className="flex gap-2">
-            <Button variant="outline" size="sm">
+            <Button variant="outline" size="sm" onClick={onClose}>
               Close
             </Button>
             <Button
